@@ -39,7 +39,10 @@ export default function PersonalScreen({ navigation }: Props) {
         'https://ptfi-lms.fmi.com/db/ug_visitor/api/save-personal.php',
         {
           method: 'POST',
-          body: JSON.stringify({ name: upperName, no_visitor: noVisitor }),
+          body: JSON.stringify({
+            name: upperName,
+            no_visitor: noVisitor,
+          }),
           // eslint-disable-next-line prettier/prettier
         }
       );
@@ -57,7 +60,7 @@ export default function PersonalScreen({ navigation }: Props) {
     let res = await savePersonal(upperName, data.noVisitor!);
     // console.log('res:', res);
 
-    setPersonal({ name: upperName, nik: res });
+    setPersonal({ name: upperName, nik: res, noVisitor: data.noVisitor });
 
     setLoading(false);
     navigation.navigate('Video');

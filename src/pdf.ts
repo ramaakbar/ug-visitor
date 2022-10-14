@@ -1,11 +1,14 @@
 import * as FileSystem from 'expo-file-system';
 import { PersonalDataType } from './stores/personalStore';
+import * as Sharing from 'expo-sharing';
+import { Platform } from 'react-native';
 
 const grabPdf = async (data: PersonalDataType) => {
   let date = new Date();
   let obj = {
     name: data.name,
-    visitor_id: data.nik,
+    visitor_id: `V${data.noVisitor}`,
+    nik: data.nik,
     date: date.toLocaleDateString(),
   };
   try {
@@ -63,8 +66,25 @@ const downloadForAos = async (pdfBase64Str: any) => {
   }
 };
 
+const downloadForIos = async (pdfBase64Str: any) => {
+  const fileUri = getFileUri('certificate');
+  await FileSystem.writeAsStringAsync(fileUri, pdfBase64Str, {
+    encoding: FileSystem.EncodingType.Base64,
+  });
+  await Sharing.shareAsync(fileUri);
+  alert('download success!');
+};
+
+function getFileUri(name: string) {
+  return FileSystem.documentDirectory + `${encodeURI(name)}.pdf`;
+}
+
 export const downloadFile = async (data: PersonalDataType) => {
   const pdf = await grabPdf(data);
 
-  downloadForAos(pdf);
+  if (Platform.OS === 'ios') {
+    downloadForIos(pdf);
+  } else {
+    downloadForAos(pdf);
+  }
 };

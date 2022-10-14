@@ -1,6 +1,7 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NativeBaseProvider } from 'native-base';
+import CertificateMenu from './src/components/CertificateMenu';
 
 import LanguageMenu from './src/components/LanguageMenu';
 import AssestmentScreen from './src/screens/AssestmentScreen';
@@ -34,7 +35,10 @@ export default function App() {
             options={{
               title: 'UG Induction',
               headerRight: () => (
-                <LanguageMenu language={language} setLanguage={setLanguage} />
+                <>
+                  {/* <CertificateMenu /> */}
+                  <LanguageMenu language={language} setLanguage={setLanguage} />
+                </>
               ),
             }}
           />
