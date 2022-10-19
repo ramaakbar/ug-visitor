@@ -1,6 +1,7 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NativeBaseProvider } from 'native-base';
+import { StatusBar } from 'react-native';
 import CertificateMenu from './src/components/CertificateMenu';
 
 import LanguageMenu from './src/components/LanguageMenu';
@@ -29,6 +30,7 @@ export default function App() {
   const { language, setLanguage } = useLanguageStore();
   return (
     <NativeBaseProvider theme={theme}>
+      <StatusBar backgroundColor='#1F2122' />
       <NavigationContainer>
         <Stack.Navigator initialRouteName='Personal'>
           <Stack.Screen
