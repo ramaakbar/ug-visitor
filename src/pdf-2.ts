@@ -7,14 +7,14 @@ const grabPdf = async (data: PersonalDataType) => {
   let date = new Date();
   let obj = {
     name: data.name,
-    visitor_id: data.noVisitor,
+    visitor_id: `V${data.noVisitor}`,
     nik: data.nik,
     date: date.toLocaleDateString(),
   };
   try {
     let res = await fetch(
       // eslint-disable-next-line prettier/prettier
-      'https://ptfi-lms.fmi.com/db/ug_visitor/api/download-certificate.php',
+      'https://ptfi-lms.fmi.com/db/ug_visitor/api/download-certificate-2.php',
       {
         method: 'POST',
         body: JSON.stringify(obj),

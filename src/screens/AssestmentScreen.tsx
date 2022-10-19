@@ -8,7 +8,7 @@ import {
   Text,
   VStack,
 } from 'native-base';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { FlatList } from 'react-native';
 
 import { RootStackParamList } from '../../App';
@@ -65,20 +65,72 @@ export default function AssestmentIndonesiaScreen({ navigation }: Props) {
     // eslint-disable-next-line prettier/prettier
     nilai: number
   ) => {
-    try {
-      let res = await fetch(
+    let res = await fetch(
+      // eslint-disable-next-line prettier/prettier
+      'https://ptfi-lms.fmi.com/db/ug_visitor/api/test.php',
+      {
+        method: 'POST',
+        body: JSON.stringify({ id: personal.nik, nilai: nilai }),
         // eslint-disable-next-line prettier/prettier
-        'https://ptfi-lms.fmi.com/db/ug_visitor/api/test.php',
-        {
-          method: 'POST',
-          body: JSON.stringify({ id: personal.nik, nilai: nilai }),
-          // eslint-disable-next-line prettier/prettier
-        }
-      );
-      return res.text();
-    } catch (error) {
-      console.log('error fetching');
+      }
+    );
+    if (res.status !== 200) {
+      console.log('somethign went wrong');
     }
+    return res.text();
+
+    // fetch(
+    //   // eslint-disable-next-line prettier/prettier
+    //   'https://ptfi-lms.fmi.com/db/ug_visitor/api/test.php',
+    //   {
+    //     method: 'POST',
+    //     body: JSON.stringify({ id: personal.nik, nilai: nilai }),
+    //     // eslint-disable-next-line prettier/prettier
+    //   }
+    // )
+    //   .then((res) => {
+    //     if (res.ok) {
+    //       return res.text();
+    //     }
+    //     throw new Error('Something went wrong');
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+  };
+
+  const handleSubmit = () => {
+    setLoading(true);
+    const { nilai } = checkResult(jawab);
+    setJawab(initialJawab);
+
+    // let res = await saveProgressTest(personal, nilai);
+    fetch(
+      // eslint-disable-next-line prettier/prettier
+      'https://ptfi-lms.fmi.com/db/ug_visitor/api/test.php',
+      {
+        method: 'POST',
+        body: JSON.stringify({ id: personal.nik, nilai: nilai }),
+        // eslint-disable-next-line prettier/prettier
+      }
+    )
+      .then((res) => {
+        if (res.ok) {
+          return res.text();
+        }
+        throw new Error('Something went wrong');
+      })
+      .then((data) => {
+        console.log(data);
+        setLoading(false);
+        setShowModal(false);
+        navigation.navigate('ResultScreen', {
+          result: nilai,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -142,18 +194,7 @@ export default function AssestmentIndonesiaScreen({ navigation }: Props) {
                 <Button
                   isLoading={loading}
                   isLoadingText='Submitting'
-                  onPress={async () => {
-                    setLoading(true);
-                    const { nilai } = checkResult(jawab);
-                    setJawab(initialJawab);
-                    let res = await saveProgressTest(personal, nilai);
-
-                    setLoading(false);
-                    setShowModal(false);
-                    navigation.navigate('ResultScreen', {
-                      result: nilai,
-                    });
-                  }}>
+                  onPress={handleSubmit}>
                   Submit
                 </Button>
               </Button.Group>

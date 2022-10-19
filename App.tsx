@@ -5,6 +5,7 @@ import CertificateMenu from './src/components/CertificateMenu';
 
 import LanguageMenu from './src/components/LanguageMenu';
 import AssestmentScreen from './src/screens/AssestmentScreen';
+import CertificatesScreen from './src/screens/CertificatesScreen';
 import PersonalScreen from './src/screens/PersonalScreen';
 import ResultScreen from './src/screens/ResultScreen';
 import VideoScreen from './src/screens/VideoScreen';
@@ -19,6 +20,7 @@ export type RootStackParamList = {
   ResultScreen: {
     result: number;
   };
+  CertificateScreen: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -32,15 +34,17 @@ export default function App() {
           <Stack.Screen
             name='Personal'
             component={PersonalScreen}
-            options={{
+            options={({ navigation }) => ({
               title: 'UG Induction',
               headerRight: () => (
                 <>
-                  {/* <CertificateMenu /> */}
+                  <CertificateMenu
+                    nav={() => navigation.navigate('CertificateScreen')}
+                  />
                   <LanguageMenu language={language} setLanguage={setLanguage} />
                 </>
               ),
-            }}
+            })}
           />
           <Stack.Screen
             name='Video'
@@ -68,6 +72,16 @@ export default function App() {
             options={{
               title: 'UG Induction',
               headerBackVisible: false,
+              headerRight: () => (
+                <LanguageMenu language={language} setLanguage={setLanguage} />
+              ),
+            }}
+          />
+          <Stack.Screen
+            name='CertificateScreen'
+            component={CertificatesScreen}
+            options={{
+              title: 'UG Induction',
               headerRight: () => (
                 <LanguageMenu language={language} setLanguage={setLanguage} />
               ),

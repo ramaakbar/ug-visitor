@@ -10,7 +10,7 @@ export const useWatched = () => {
       setWatched(false);
       const timer = setTimeout(() => {
         setWatched(true);
-      }, 1000);
+      }, 480000);
 
       return () => clearTimeout(timer);
       // eslint-disable-next-line prettier/prettier
