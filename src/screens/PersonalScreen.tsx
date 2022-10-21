@@ -23,6 +23,8 @@ export default function PersonalScreen({ navigation }: Props) {
     formState: { errors },
     reset,
   } = useForm<PersonalDataType>({
+    mode: 'onSubmit',
+    reValidateMode: 'onSubmit',
     defaultValues: {
       name: '',
       noVisitor: '',

@@ -7,6 +7,7 @@ import CertificateMenu from './src/components/CertificateMenu';
 import LanguageMenu from './src/components/LanguageMenu';
 import AssestmentScreen from './src/screens/AssestmentScreen';
 import CertificatesScreen from './src/screens/CertificatesScreen';
+import LoginScreen from './src/screens/LoginScreen';
 import PersonalScreen from './src/screens/PersonalScreen';
 import ResultScreen from './src/screens/ResultScreen';
 import VideoScreen from './src/screens/VideoScreen';
@@ -15,6 +16,7 @@ import theme from './src/theme';
 import { JawabanType } from './src/types';
 
 export type RootStackParamList = {
+  Login: undefined;
   Personal: undefined;
   Video: undefined;
   Assestment: undefined;
@@ -32,7 +34,12 @@ export default function App() {
     <NativeBaseProvider theme={theme}>
       <StatusBar backgroundColor='#1F2122' />
       <NavigationContainer>
-        <Stack.Navigator initialRouteName='Personal'>
+        <Stack.Navigator initialRouteName='Login'>
+          <Stack.Screen
+            name='Login'
+            component={LoginScreen}
+            options={{ headerShown: false }}
+          />
           <Stack.Screen
             name='Personal'
             component={PersonalScreen}
