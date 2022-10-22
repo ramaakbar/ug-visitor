@@ -13,12 +13,10 @@ const grabPdf = async (data: PersonalDataType) => {
   };
   try {
     let res = await fetch(
-      // eslint-disable-next-line prettier/prettier
       'https://ptfi-lms.fmi.com/db/ug_visitor/api/download-certificate-2.php',
       {
         method: 'POST',
         body: JSON.stringify(obj),
-        // eslint-disable-next-line prettier/prettier
       }
     );
 
@@ -36,7 +34,6 @@ const downloadForAos = async (pdfBase64Str: any) => {
     FileSystem.StorageAccessFramework.getUriForDirectoryInRoot('Download');
   const permissions =
     await FileSystem.StorageAccessFramework.requestDirectoryPermissionsAsync(
-      // eslint-disable-next-line prettier/prettier
       folder
     );
   if (!permissions.granted) {
@@ -48,7 +45,6 @@ const downloadForAos = async (pdfBase64Str: any) => {
   let filePath = await FileSystem.StorageAccessFramework.createFileAsync(
     permissions.directoryUri,
     'certificate.pdf',
-    // eslint-disable-next-line prettier/prettier
     'application/pdf'
   );
   // let filePath = "content://com.android.externalstorage.documents/tree/primary%3Atest/document/primary%3Atest%2Ftest.txt";
@@ -57,7 +53,6 @@ const downloadForAos = async (pdfBase64Str: any) => {
     await FileSystem.StorageAccessFramework.writeAsStringAsync(
       filePath,
       pdfBase64Str,
-      // eslint-disable-next-line prettier/prettier
       { encoding: FileSystem.EncodingType.Base64 }
     );
     alert('download success!');

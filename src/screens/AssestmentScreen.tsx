@@ -62,16 +62,13 @@ export default function AssestmentIndonesiaScreen({ navigation }: Props) {
 
   const saveProgressTest = async (
     personal: PersonalDataType,
-    // eslint-disable-next-line prettier/prettier
     nilai: number
   ) => {
     let res = await fetch(
-      // eslint-disable-next-line prettier/prettier
       'https://ptfi-lms.fmi.com/db/ug_visitor/api/test.php',
       {
         method: 'POST',
         body: JSON.stringify({ id: personal.nik, nilai: nilai }),
-        // eslint-disable-next-line prettier/prettier
       }
     );
     if (res.status !== 200) {
@@ -105,15 +102,10 @@ export default function AssestmentIndonesiaScreen({ navigation }: Props) {
     setJawab(initialJawab);
 
     // let res = await saveProgressTest(personal, nilai);
-    fetch(
-      // eslint-disable-next-line prettier/prettier
-      'https://ptfi-lms.fmi.com/db/ug_visitor/api/test.php',
-      {
-        method: 'POST',
-        body: JSON.stringify({ id: personal.nik, nilai: nilai }),
-        // eslint-disable-next-line prettier/prettier
-      }
-    )
+    fetch('https://ptfi-lms.fmi.com/db/ug_visitor/api/test.php', {
+      method: 'POST',
+      body: JSON.stringify({ id: personal.nik, nilai: nilai }),
+    })
       .then((res) => {
         if (res.ok) {
           return res.text();

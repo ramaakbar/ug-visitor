@@ -13,7 +13,6 @@ export const useWatched = () => {
       }, 480000);
 
       return () => clearTimeout(timer);
-      // eslint-disable-next-line prettier/prettier
     }, [])
   );
   return watched;

@@ -37,7 +37,6 @@ export default function PersonalScreen({ navigation }: Props) {
   const savePersonal = async (upperName: string, noVisitor: string) => {
     try {
       let res = await fetch(
-        // eslint-disable-next-line prettier/prettier
         'https://ptfi-lms.fmi.com/db/ug_visitor/api/save-personal.php',
         {
           method: 'POST',
@@ -45,7 +44,6 @@ export default function PersonalScreen({ navigation }: Props) {
             name: upperName,
             no_visitor: noVisitor,
           }),
-          // eslint-disable-next-line prettier/prettier
         }
       );
       return res.text();

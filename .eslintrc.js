@@ -5,7 +5,7 @@ module.exports = {
       'error',
       {
         singleQuote: true,
-        trailingComma: 'all',
+        trailingComma: 'es5',
         arrowParens: 'always',
         endOfLine: 'auto',
         jsxSingleQuote: true,

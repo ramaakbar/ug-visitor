@@ -27,7 +27,6 @@ export default function CertificatesScreen() {
 
   const fetchCert = async (): Promise<CertificateRes> => {
     let res = await fetch(
-      // eslint-disable-next-line prettier/prettier
       'https://ptfi-lms.fmi.com/db/ug_visitor/api/all-certificates.php'
     );
     let data = await res.json();
