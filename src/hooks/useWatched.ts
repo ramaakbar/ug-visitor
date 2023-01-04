@@ -10,7 +10,7 @@ export const useWatched = () => {
       setWatched(false);
       const timer = setTimeout(() => {
         setWatched(true);
-      }, 480000);
+      }, 1000);
 
       return () => clearTimeout(timer);
     }, [])

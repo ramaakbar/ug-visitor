@@ -61,7 +61,7 @@ export default function VideoIndonesiaScreen({ navigation }: Props) {
           source={{
             uri:
               language === 'Indonesia'
-                ? 'https://ptfi-lms.fmi.com/db/ug_visitor/videos/EN_UG_Induction_2022_HD.mp4'
+                ? 'https://ptfi-lms.fmi.com/db/ug_visitor/videos/ID_UG_Induction_2022_HD.mp4'
                 : 'https://ptfi-lms.fmi.com/db/ug_visitor/videos/EN_UG_Induction_2022_HD.mp4',
           }}
           useNativeControls

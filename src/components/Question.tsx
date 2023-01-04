@@ -1,5 +1,6 @@
 import { Box, FormControl, Radio, Stack } from 'native-base';
 import { Dispatch, SetStateAction } from 'react';
+import { Image } from 'react-native';
 
 import { JawabanType } from '../types';
 
@@ -45,7 +46,15 @@ export default function Question({
                 value={value[index]}
                 size='sm'
                 _stack={{ alignItems: 'flex-start' }}>
-                {val}
+                {question.includes('3.') === true ? (
+                  <Box>
+                    {`${value[index]}.`}
+                    {/* @ts-ignore */}
+                    <Image source={val} />
+                  </Box>
+                ) : (
+                  val
+                )}
               </Radio>
             ))}
           </Stack>

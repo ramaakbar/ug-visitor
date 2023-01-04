@@ -5,9 +5,33 @@ import { useState } from 'react';
 import { RootStackParamList } from '../../App';
 import { downloadFile } from '../pdf';
 import { useLanguageStore } from '../stores/languageStore';
-import { usePersonalStore } from '../stores/personalStore';
+import { PersonalDataType, usePersonalStore } from '../stores/personalStore';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'ResultScreen'>;
+
+const sendEmail = async (data: PersonalDataType) => {
+  let obj = {
+    name: data.name,
+    visitor_id: data.noVisitor,
+    nik: data.nik,
+  };
+  try {
+    let res = await fetch(
+      'https://ptfi-lms.fmi.com/db/ug_visitor/api/send-email.php',
+      {
+        method: 'POST',
+        body: JSON.stringify(obj),
+      }
+    );
+
+    let data = await res.text();
+    console.log(`email successfully send , ${data} `);
+
+    return data;
+  } catch (error) {
+    console.log('error sending email');
+  }
+};
 
 export default function ResultScreen({ navigation, route }: Props) {
   const { result } = route.params;
@@ -132,6 +156,7 @@ export default function ResultScreen({ navigation, route }: Props) {
         <Button
           onPress={async () => {
             setLoading(true);
+            await sendEmail(personal);
             await downloadFile(personal);
             setLoading(false);
           }}

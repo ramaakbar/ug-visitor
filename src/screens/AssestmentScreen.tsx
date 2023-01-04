@@ -122,6 +122,11 @@ export default function AssestmentIndonesiaScreen({ navigation }: Props) {
       })
       .catch((err) => {
         console.log(err);
+        setLoading(false);
+        setShowModal(false);
+        navigation.navigate('ResultScreen', {
+          result: nilai,
+        });
       });
   };
 

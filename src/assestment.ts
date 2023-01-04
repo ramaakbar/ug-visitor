@@ -24,12 +24,12 @@ export const assestmentIndo = [
   {
     id: '3',
     question:
-      '3.	Berikut ini adalah jenis-jenis kode komunikasi lampu tambang beserta artinya, antara lain:',
+      '3.	Berikut ini adalah jenis-jenis kode komunikasi lampu tambang beserta artinya, kecuali:',
     choices: [
-      'a.	Lampu Tambang berputar, artinya Anda harus mendekat',
-      'b.	Lampu Tambang bergerak ke kanan dan ke kiri atau horizontal, artinya Anda harus berhenti',
-      'c.	Lampu Tambang bergerak ke atas dan ke bawah atau vertikal, artinya Anda harus menjauh',
-      'd.	Jawaban a, b dan c benar',
+      require('./assets/no3/a-ind.png'),
+      require('./assets/no3/b-ind.png'),
+      require('./assets/no3/c-ind.png'),
+      require('./assets/no3/d-ind.png'),
     ],
   },
   {
@@ -85,12 +85,12 @@ export const assestmentEng = [
   {
     id: '3',
     question:
-      '3.	Below are the types of cap lamp communication codes (signals) in underground mine, including:',
+      '3.	Below are the types of cap lamp communication codes (signals) in underground mine, except:',
     choices: [
-      'a.	Cap lamp is rotating, it means you must get closer',
-      'b.	Cap lamp move right and left or horizontally, it means you must stop',
-      'c.	Cap lamp move up and down or vertically, it means you must stay away',
-      'd.	Answer a, b and c are correct',
+      require('./assets/no3/a-eng.png'),
+      require('./assets/no3/b-eng.png'),
+      require('./assets/no3/c-eng.png'),
+      require('./assets/no3/d-eng.png'),
     ],
   },
   {

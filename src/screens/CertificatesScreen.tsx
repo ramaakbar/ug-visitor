@@ -113,33 +113,32 @@ export default function CertificatesScreen() {
                   </Flex>
                 </VStack>
                 <Flex justifyContent={'center'}>
-                  {item.status === 'Done' ||
-                    (item.status === 'Done Download' && (
-                      <Button
-                        isLoading={
-                          downloadLoading.item === item.id &&
-                          downloadLoading.loading
-                        }
-                        isLoadingText='Loading'
-                        variant='ghost'
-                        onPress={async () => {
-                          setDownloadLoading((prev) => ({
-                            loading: true,
-                            item: item.id,
-                          }));
-                          await downloadFile({
-                            name: item.nama,
-                            nik: item.id_user,
-                            noVisitor: item.no_visitor,
-                          });
-                          setDownloadLoading((prev) => ({
-                            ...prev,
-                            loading: false,
-                          }));
-                        }}>
-                        Download
-                      </Button>
-                    ))}
+                  {item.status.includes('Done') && (
+                    <Button
+                      isLoading={
+                        downloadLoading.item === item.id &&
+                        downloadLoading.loading
+                      }
+                      isLoadingText='Loading'
+                      variant='ghost'
+                      onPress={async () => {
+                        setDownloadLoading((prev) => ({
+                          loading: true,
+                          item: item.id,
+                        }));
+                        await downloadFile({
+                          name: item.nama,
+                          nik: item.id_user,
+                          noVisitor: item.no_visitor,
+                        });
+                        setDownloadLoading((prev) => ({
+                          ...prev,
+                          loading: false,
+                        }));
+                      }}>
+                      Download
+                    </Button>
+                  )}
                 </Flex>
               </HStack>
             </Box>
