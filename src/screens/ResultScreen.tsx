@@ -1,43 +1,17 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Alert, Box, Button, Heading, HStack, Text, VStack } from 'native-base';
-import { useState } from 'react';
 
 import { RootStackParamList } from '../../App';
-import { downloadFile } from '../pdf';
+import PernyataanModal from '../components/PernyataanModal';
 import { useLanguageStore } from '../stores/languageStore';
 import { PersonalDataType, usePersonalStore } from '../stores/personalStore';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'ResultScreen'>;
 
-const sendEmail = async (data: PersonalDataType) => {
-  let obj = {
-    name: data.name,
-    visitor_id: data.noVisitor,
-    nik: data.nik,
-  };
-  try {
-    let res = await fetch(
-      'https://ptfi-lms.fmi.com/db/ug_visitor/api/send-email.php',
-      {
-        method: 'POST',
-        body: JSON.stringify(obj),
-      }
-    );
-
-    let data = await res.text();
-    console.log(`email successfully send , ${data} `);
-
-    return data;
-  } catch (error) {
-    console.log('error sending email');
-  }
-};
-
 export default function ResultScreen({ navigation, route }: Props) {
   const { result } = route.params;
   const { language } = useLanguageStore();
   const { personal } = usePersonalStore();
-  const [loading, setLoading] = useState(false);
 
   return (
     <VStack space={4} mx={4} mt={4}>
@@ -134,7 +108,7 @@ export default function ResultScreen({ navigation, route }: Props) {
                 }}>
                 {language === 'Indonesia'
                   ? `Berikut ini adalah ID Visitor anda : ${personal.nik}`
-                  : `Here is your Visitor ID : ${personal.nik}`}
+                  : `Here is your Visitor ID : V-${personal.noVisitor}`}
               </Box>
               <Box
                 pl='6'
@@ -153,22 +127,18 @@ export default function ResultScreen({ navigation, route }: Props) {
       </VStack>
 
       {result === 100 ? (
-        <Button
-          onPress={async () => {
-            setLoading(true);
-            await sendEmail(personal);
-            await downloadFile(personal);
-            setLoading(false);
-          }}
-          isLoading={loading}
-          isLoadingText='Loading'>
-          Download Certificate
-        </Button>
+        <PernyataanModal />
       ) : (
-        <Button onPress={() => navigation.navigate('Video')}>
+        <Button
+          onPress={() => {
+            navigation.reset({
+              index: 0,
+              routes: [{ name: 'Assestment' }],
+            });
+          }}>
           {language === 'Indonesia'
-            ? 'Kembali ke halaman video'
-            : 'Go back to Video'}
+            ? 'Coba lagi, kembali ke quis'
+            : 'Try again, back to quis'}
         </Button>
       )}
 

@@ -1,4 +1,5 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { CommonActions } from '@react-navigation/native';
 import {
   Alert,
   Button,
@@ -8,7 +9,7 @@ import {
   Text,
   VStack,
 } from 'native-base';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { FlatList } from 'react-native';
 
 import { RootStackParamList } from '../../App';
@@ -59,42 +60,6 @@ export default function AssestmentIndonesiaScreen({ navigation }: Props) {
   const [showModal, setShowModal] = useState(false);
   const { personal } = usePersonalStore();
   const { language } = useLanguageStore();
-
-  const saveProgressTest = async (
-    personal: PersonalDataType,
-    nilai: number
-  ) => {
-    let res = await fetch(
-      'https://ptfi-lms.fmi.com/db/ug_visitor/api/test.php',
-      {
-        method: 'POST',
-        body: JSON.stringify({ id: personal.nik, nilai: nilai }),
-      }
-    );
-    if (res.status !== 200) {
-      console.log('somethign went wrong');
-    }
-    return res.text();
-
-    // fetch(
-    //   // eslint-disable-next-line prettier/prettier
-    //   'https://ptfi-lms.fmi.com/db/ug_visitor/api/test.php',
-    //   {
-    //     method: 'POST',
-    //     body: JSON.stringify({ id: personal.nik, nilai: nilai }),
-    //     // eslint-disable-next-line prettier/prettier
-    //   }
-    // )
-    //   .then((res) => {
-    //     if (res.ok) {
-    //       return res.text();
-    //     }
-    //     throw new Error('Something went wrong');
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
-  };
 
   const handleSubmit = () => {
     setLoading(true);

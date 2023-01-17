@@ -2,7 +2,7 @@
   "expo": {
     "name": "ugVisitor",
     "slug": "ugVisitor",
-    "version": "1.0.5",
+    "version": "1.0.9",
     "orientation": "portrait",
     "icon": "./src/assets/1024.png",
     "userInterfaceStyle": "light",
@@ -18,7 +18,7 @@
       "supportsTablet": true
     },
     "android": {
-      "versionCode": 6,
+      "versionCode": 11,
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/1024.png",
         "backgroundColor": "#1F2122"

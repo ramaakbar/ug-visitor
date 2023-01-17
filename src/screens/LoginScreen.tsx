@@ -85,7 +85,6 @@ export default function LoginScreen({ navigation }: Props) {
           )}
           name='username'
         />
-
         <Controller
           control={control}
           rules={{

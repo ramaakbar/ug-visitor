@@ -74,9 +74,11 @@ export default function VideoIndonesiaScreen({ navigation }: Props) {
       {watched && (
         <Button
           onPress={() => {
+            // @ts-ignore
+            video?.current.pauseAsync();
             navigation.navigate('Assestment');
           }}>
-          Go to quis
+          {language === 'Indonesia' ? 'Pindah ke halaman kuis' : 'Go to quis'}
         </Button>
       )}
     </ScrollView>

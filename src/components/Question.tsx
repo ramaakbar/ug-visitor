@@ -1,5 +1,5 @@
-import { Box, FormControl, Radio, Stack } from 'native-base';
-import { Dispatch, SetStateAction } from 'react';
+import { Box, Button, FormControl, Radio, Stack } from 'native-base';
+import { Dispatch, SetStateAction, useEffect } from 'react';
 import { Image } from 'react-native';
 
 import { JawabanType } from '../types';

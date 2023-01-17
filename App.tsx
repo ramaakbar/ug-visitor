@@ -2,8 +2,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NativeBaseProvider } from 'native-base';
 import { StatusBar } from 'react-native';
-import CertificateMenu from './src/components/CertificateMenu';
 
+import CertificateMenu from './src/components/CertificateMenu';
 import LanguageMenu from './src/components/LanguageMenu';
 import AssestmentScreen from './src/screens/AssestmentScreen';
 import CertificatesScreen from './src/screens/CertificatesScreen';
@@ -13,7 +13,6 @@ import ResultScreen from './src/screens/ResultScreen';
 import VideoScreen from './src/screens/VideoScreen';
 import { useLanguageStore } from './src/stores/languageStore';
 import theme from './src/theme';
-import { JawabanType } from './src/types';
 
 export type RootStackParamList = {
   Login: undefined;
@@ -44,7 +43,7 @@ export default function App() {
             name='Personal'
             component={PersonalScreen}
             options={({ navigation }) => ({
-              title: 'UG Induction',
+              title: 'UG Visitor Induction',
               headerRight: () => (
                 <>
                   <CertificateMenu
@@ -59,7 +58,7 @@ export default function App() {
             name='Video'
             component={VideoScreen}
             options={{
-              title: 'UG Induction',
+              title: 'UG Visitor Induction',
               headerRight: () => (
                 <LanguageMenu language={language} setLanguage={setLanguage} />
               ),
@@ -69,7 +68,7 @@ export default function App() {
             name='Assestment'
             component={AssestmentScreen}
             options={{
-              title: 'UG Induction',
+              title: 'UG Visitor Induction',
               headerRight: () => (
                 <LanguageMenu language={language} setLanguage={setLanguage} />
               ),
@@ -79,7 +78,7 @@ export default function App() {
             name='ResultScreen'
             component={ResultScreen}
             options={{
-              title: 'UG Induction',
+              title: 'UG Visitor Induction',
               headerBackVisible: false,
               headerRight: () => (
                 <LanguageMenu language={language} setLanguage={setLanguage} />
@@ -90,7 +89,7 @@ export default function App() {
             name='CertificateScreen'
             component={CertificatesScreen}
             options={{
-              title: 'UG Induction',
+              title: 'UG Visitor Induction',
               headerRight: () => (
                 <LanguageMenu language={language} setLanguage={setLanguage} />
               ),
